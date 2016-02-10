@@ -1,10 +1,6 @@
 # Static Content challenge
 
-<<<<<<< Updated upstream
-**NB: Please do not fork this repository, to avoid your solution being visible from this repository's GitHub page.**
-=======
-NB: Please do not fork this repository, to avoid your solution being visible from this repository's GitHub page. Please clone this repository and submit your solution as a separate repository.
->>>>>>> Stashed changes
+**NB: Please do not fork this repository, to avoid your solution being visible from this repository's GitHub page. Please clone this repository and submit your solution as a separate repository.**
 
 The challenge here is to create a node.js application that displays HTML pages at URLs that match the names of the folders in the `content` folder. The content of these pages should come from a combination of the template HTML file and a markdown file containing the content.
 
@@ -19,4 +15,3 @@ The application should be shipped with three tests:
 * one that verifies that requests to URLs that do not match content folders return a 404 HTTP status code
 
 Your application may make use of open-source code libraries. It is entirely up to you how the application performs the challenge.
-
