@@ -22,11 +22,13 @@
   },
   "homepage": "https://github.com/thegsi/static-content-challenge/readme.md",
   "dependencies": {
+    "fs": "0.0.2",
     "handlebars": "^4.0.5",
     "hapi": "^11.1.0",
     "hoek": "^3.0.1",
     "inert": "^3.2.0",
     "keyword-highlighter": "^1.0.3",
+    "path": "^0.12.7",
     "request": "^2.69.0",
     "tape": "^4.4.0",
     "vision": "^4.0.1"
