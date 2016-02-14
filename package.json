@@ -1,0 +1,41 @@
+{
+  "name": "GethinReesStaticContentChallenge",
+  "version": "1.0.0",
+  "description": "HAPI Server",
+  "main": "lib/start.js",
+  "scripts": {
+    "test": "./node_modules/lab/bin/lab ./test/*.test.js -m 0 -c -a code -r lcov -o lcov.info -r console -o stdout",
+    "start": "node lib/start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegsi/static-content-challenge"
+  },
+  "keywords": [
+    "web",
+    "server"
+  ],
+  "author": "SimonLab",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thegsi/static-content-challenge/issues"
+  },
+  "homepage": "https://github.com/thegsi/static-content-challenge/readme.md",
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "hapi": "^11.1.0",
+    "hoek": "^3.0.1",
+    "inert": "^3.2.0",
+    "keyword-highlighter": "^1.0.3",
+    "request": "^2.69.0",
+    "tape": "^4.4.0",
+    "vision": "^4.0.1"
+  },
+  "devDependencies": {
+    "code": "^2.0.1",
+    "lab": "^7.2.0"
+  },
+  "engines": {
+    "node": "4.1.1"
+  }
+}
