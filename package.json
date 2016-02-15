@@ -4,8 +4,9 @@
   "description": "HAPI Server",
   "main": "lib/start.js",
   "scripts": {
-    "test": "./node_modules/lab/bin/lab ./test/*.test.js -m 0 -c -a code -r lcov -o lcov.info -r console -o stdout",
-    "start": "node lib/start.js"
+    "test": "istanbul cover ./node_modules/.bin/tape ./test/*.js",
+    "start": "node lib/start.js",
+    "coverage": "istanbul cover ./node_modules/.bin/tape ./tests/*.js"
   },
   "repository": {
     "type": "git",
@@ -15,7 +16,7 @@
     "web",
     "server"
   ],
-  "author": "SimonLab",
+  "author": "thegsi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/thegsi/static-content-challenge/issues"
@@ -27,6 +28,7 @@
     "hapi": "^11.1.0",
     "hoek": "^3.0.1",
     "inert": "^3.2.0",
+    "istanbul": "^0.4.2",
     "keyword-highlighter": "^1.0.3",
     "markdown-to-html": "0.0.11",
     "path": "^0.12.7",
@@ -37,6 +39,7 @@
   },
   "devDependencies": {
     "code": "^2.0.1",
+    "jshint": "^2.9.1",
     "lab": "^7.2.0"
   },
   "engines": {
