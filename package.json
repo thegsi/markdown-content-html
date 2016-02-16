@@ -1,12 +1,11 @@
 {
   "name": "GethinReesStaticContentChallenge",
   "version": "1.0.0",
-  "description": "HAPI Server",
+  "description": "Static Content Challenge",
   "main": "lib/start.js",
   "scripts": {
     "test": "istanbul cover ./node_modules/.bin/tape ./test/*.js",
-    "start": "node lib/start.js",
-    "coverage": "istanbul cover ./node_modules/.bin/tape ./tests/*.js"
+    "start": "node lib/start.js"
   },
   "repository": {
     "type": "git",
