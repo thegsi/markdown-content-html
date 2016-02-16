@@ -61,7 +61,9 @@ test(file + " GET /about-page returns body", function(t) {
 
     server.inject(options, function(res) {
 
-      t.equal((res.payload.indexOf(elem[1]) > -1), true, 'server loads ok');
+      var indexHTMLcontent = (res.payload.indexOf(elem[1]) > -1) && (res.payload.indexOf("<body>") > -1);
+
+      t.equal(indexHTMLcontent, true, 'server loads ok');
 
       setTimeout(function() {
         incrementCounter();
