@@ -7,45 +7,82 @@ var file = dir + __filename.replace(__dirname, '') + ' ->';
 var start = require('../lib/start.js');
 var server = require('../lib/index.js');
 
+//one that verifies that requests to valid URLs return a 200 HTTP status code
 test(file + " GET /about-page returns status 200", function(t) {
-  var options = {
-    method: "GET",
-    url: "/about-page"
+
+  var endpointArray = ["about-page", "jobs", "valves"];
+  var counter = 0;
+
+  function incrementCounter() {
+    counter++;
   };
-  server.inject(options, function(res) {
-    t.equal(res.statusCode, 200, 'server loads ok');
 
-    setTimeout(function() {
-      server.stop(t.end);
-    }, 700);
+  endpointArray.forEach(function(elem, i) {
+    var options = {
+      method: "GET",
+      url: "/" + elem
+    };
 
-  });
+    server.inject(options, function(res) {
+      t.equal(res.statusCode, 200, 'server loads ok');
+
+      setTimeout(function() {
+        incrementCounter();
+        if (counter === 3) {
+          server.stop(t.end);
+        }
+      }, 700);
+
+    });
+  })
+
+
 });
 
+//one that verifies that requests to valid URLS return a body that contains the HTML generated from the relevant `index.md` markdown file
 test(file + " GET /about-page returns body", function(t) {
-  var options = {
-    method: "GET",
-    url: "/about-page"
+
+  var endpointHTMLArray = [
+    ['about-page', '<h1 id="thisistheaboutpage">This is the About page</h1>'],
+    ['jobs', '<h1 id="jobsatacmeco">Jobs at Acme Co.</h1>'],
+    ['valves', '<h1 id="valves">Valves</h1>']
+  ];
+  var counter = 0;
+
+  function incrementCounter() {
+    counter++;
   };
 
-  server.inject(options, function(res) {
-    console.log("res.payload.indexOf", res.payload.indexOf('<h1 id="thisistheaboutpage">This is the About page</h1>'));
+  endpointHTMLArray.forEach(function(elem, i) {
+    var options = {
+      method: "GET",
+      url: "/" + elem[0]
+    };
 
+    server.inject(options, function(res) {
 
-    t.equal(res.payload.indexOf('<h1 id="thisistheaboutpage">This is the About page</h1>'), 102 , 'server loads ok');
+      var indexHTMLcontent = (res.payload.indexOf(elem[1]) > -1) && (res.payload.indexOf("<body>") > -1);
 
-    setTimeout(function() {
-      server.stop(t.end);
-    }, 700);
+      t.equal(indexHTMLcontent, true, 'server loads ok');
 
-  });
+      setTimeout(function() {
+        incrementCounter();
+        if (counter === 3) {
+          server.stop(t.end);
+        }
+      }, 700);
+
+    });
+
+  })
+
 });
 
-
-test(file + " GET /55 returns status 404", function(t) {
+//one that verifies that requests to URLs that do not match content folders return a 404 HTTP status code
+test(file + " GET /404 returns status 404", function(t) {
   var options = {
     method: "GET",
-    url: "/55"
+    url: "/404"
   };
   server.inject(options, function(res) {
     t.equal(res.statusCode, 404, 'server loads ok');
