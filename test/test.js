@@ -12,6 +12,7 @@ test(file + " GET /about-page returns status 200", function(t) {
 
   var endpointArray = ["about-page", "jobs", "valves"];
   var counter = 0;
+  var finishTestCount = endpointArray.length;
 
   function incrementCounter() {
     counter++;
@@ -28,7 +29,7 @@ test(file + " GET /about-page returns status 200", function(t) {
 
       setTimeout(function() {
         incrementCounter();
-        if (counter === 3) {
+        if (counter === finishTestCount) {
           server.stop(t.end);
         }
       }, 700);
@@ -48,6 +49,7 @@ test(file + " GET /about-page returns body", function(t) {
     ['valves', '<h1 id="valves">Valves</h1>']
   ];
   var counter = 0;
+  var finishTestCount = endpointHTMLArray.length;
 
   function incrementCounter() {
     counter++;
@@ -67,7 +69,7 @@ test(file + " GET /about-page returns body", function(t) {
 
       setTimeout(function() {
         incrementCounter();
-        if (counter === 3) {
+        if (counter === finishTestCount) {
           server.stop(t.end);
         }
       }, 700);
@@ -79,10 +81,10 @@ test(file + " GET /about-page returns body", function(t) {
 });
 
 //one that verifies that requests to URLs that do not match content folders return a 404 HTTP status code
-test(file + " GET /404 returns status 404", function(t) {
+test(file + " GET /other returns status 404", function(t) {
   var options = {
     method: "GET",
-    url: "/404"
+    url: "/other"
   };
   server.inject(options, function(res) {
     t.equal(res.statusCode, 404, 'server loads ok');
